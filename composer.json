@@ -1,0 +1,8 @@
+{
+    "name": "rogue/framework",
+    "description": "Rogue PHP Framework",
+    "type": "library",
+    "license": "MIT",
+    "minimum-stability": "dev",
+    "require": {}
+}

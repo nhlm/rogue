@@ -1,0 +1,10 @@
+{
+    "name": "rogue/servant",
+    "description": "Object Orchestration Component",
+    "type": "library",
+    "license": "MIT",
+    "require": {},
+    "require-dev": {
+        "rogue/unittest-foundation": "~1.0"
+    }
+}
