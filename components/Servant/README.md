@@ -1,2 +1,0 @@
-# servant
-Object Orchestration Component
