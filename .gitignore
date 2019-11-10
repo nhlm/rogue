@@ -1,3 +1,4 @@
 /vendor/
 /analytics/
 .DS_Store
+.phpunit.result.cache
