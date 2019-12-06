@@ -121,9 +121,9 @@ class Service implements ServiceInterface {
     public function withFactory(callable $typedFactory): ServiceInterface
     {
         $reflection = $this->reflectionCache->dispenseByCallable($typedFactory);
-        $returnType = $reflection->getReturnType()->getName();
+        $returnType = $reflection->getReturnType();
 
-        if ( ! is_a($returnType, $this->interface, true) ) {
+        if ( $returnType === null || ! is_a($returnType->getName(), $this->interface, true) ) {
             throw new ServantException(
                 'The provided factory must set a compatible class for the service `'.
                 $this->interface.'` as its return type'
@@ -131,7 +131,7 @@ class Service implements ServiceInterface {
         }
 
         $this->factory = Closure::fromCallable($typedFactory);
-        $this->concrete = $returnType;
+        $this->concrete = $returnType->getName();
 
         return $this;
     }
@@ -169,7 +169,7 @@ class Service implements ServiceInterface {
     {
         $reflection = $this->reflectionCache->dispenseByCallable($callback);
         
-        if ( ! ( $reflection->getNumberOfParameters() === 0 ) ) {
+        if ( $reflection->getNumberOfParameters() === 0 ) {
             throw new ServantException(
                 'The provided initializer must have at least one parameter requiring the interface '. 
                 'of this service'
@@ -183,7 +183,7 @@ class Service implements ServiceInterface {
             );
         }
 
-        $this->initializer = Closure::fromCallback($callback);
+        $this->initializer = Closure::fromCallable($callback);
 
         return $this;
     }

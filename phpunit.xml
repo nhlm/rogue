@@ -1,10 +1,18 @@
 <phpunit bootstrap="vendor/autoload.php">
     <testsuites>
         <testsuite name="component-servant">
-            <directory>components/Servant/tests</directory>
+            <directory>src/Rogue/Servant/Tests</directory>
         </testsuite>
     </testsuites>
     <logging>
         <log type="coverage-html" target="analytics/coverage" />
     </logging>
-</phpunit>
+    <filter>
+        <whitelist processUncoveredFilesFromWhitelist="true">
+            <directory suffix=".php">src/Rogue</directory>
+            <exclude>
+                <directory>src/Rogue/Servant/Tests</directory>
+            </exclude>
+        </whitelist>
+    </filter>
+</phpunit> 
